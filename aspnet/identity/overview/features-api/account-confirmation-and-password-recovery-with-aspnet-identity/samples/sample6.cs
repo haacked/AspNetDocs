@@ -9,7 +9,7 @@ public async Task<ActionResult> Register(RegisterViewModel model)
         var result = await UserManager.CreateAsync(user, model.Password);
         if (result.Succeeded)
         {
-            var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+            var code = await UserManager.GenerateEmailConfirmationTokenAsync(user);
             var callbackUrl = Url.Action(
                "ConfirmEmail", "Account", 
                new { userId = user.Id, code = code }, 
